@@ -3,8 +3,7 @@
 namespace app\controller;
 use think\facade\Db;
 use app\model\user;
-use think\Db as ThinkDb;
-use think\db\Where;
+
 
 class DataTest
 {
@@ -39,12 +38,24 @@ class DataTest
 
 
     //游标
-        $cursor=Db::name('user')->cursor();
+        // $cursor=Db::name('user')->cursor();
 
-        foreach ($cursor as $k) {
-            dump($k);
-        }
-        echo 1;
+        // foreach ($cursor as $k) {
+        //     dump($k);
+        // }
+        // echo 1;
+
+        // $df=Db::name('user')->where('id',27)->select();
+        // dump($df);
+
+        $useerQuery=Db::name('user');
+        // $dataFind=$useerQuery->where('id',27)->find();
+        $data1=$useerQuery->order('id','desc')->select();
+        
+        $data2=$useerQuery->select();
+        $useerQuery->removeOption('order')->select();
+        return Db::getlastsql();
+        //return  json($dataFind);
     }
 
 
