@@ -3,7 +3,7 @@
 namespace app\controller;
 use think\facade\Db;
 use app\model\user;
-
+use think\Db as ThinkDb;
 
 class DataTest
 {
@@ -55,6 +55,7 @@ class DataTest
         $data2=$useerQuery->select();
         $useerQuery->removeOption('order')->select();
         return Db::getlastsql();
+        
         //return  json($dataFind);
     }
 
@@ -70,5 +71,56 @@ class DataTest
     {
         $user=User::select();
         return json($user);
+    }
+
+    public function insert()
+    {
+
+        $data=[
+
+            'username'=>'wxf',
+            'password'=>'1234565',
+            'gender'  =>'男',
+            'email' => 'huiye@163.com',
+            'price' => 90, 
+            'details' => '123',
+            // 'abd'     => 'yyyu'
+       
+   
+    ];
+
+        // return Db::name('user')->strict(false)->insert($data);
+        // Db::name('user')->replace()->insert($data);
+        // return Db::getlastsql();
+        // return Db::name('user')->insertGetId($data);
+         return Db::name('user')->save($data);
+    }
+
+    public function insert2()
+    {
+
+        $dataAll=[[
+
+            'username'=>'wxf',
+            'password'=>'1234565',
+            'gender'  =>'男',
+            'email' => 'huiye@163.com',
+            'price' => 90, 
+            'details' => '123',
+            // 'abd'     => 'yyyu'
+        ],
+        [ 
+            'username' => '辉夜', 
+            'password' => '123', 
+            'gender' => '女', 
+            'email' => 'huiye@163.com', 
+            'price' => 90, 
+            'details' => '123' 
+            ]
+    ];
+
+        // return Db::name('user')->insertAll($dataAll);
+        // return Db::name('user')->replace()->insertAll($dataAll);
+       
     }
 }
