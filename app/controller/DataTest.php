@@ -123,4 +123,31 @@ class DataTest
         // return Db::name('user')->replace()->insertAll($dataAll);
        
     }
+
+    public function update()
+    {
+        // $data=[
+        //     'username'    =>'wxf',
+        // ];
+
+        // return Db::name('user')->where('id',308)->update($data);
+        $data=[
+                'id'          =>308,
+                'username'    =>'李白'
+                
+             ];
+    
+            //  return Db::name('user')->update($data);
+
+            // Db::name('user')->where('id',308)
+            //                 ->update([
+            //                     'email'     =>   Db::raw('upper(email)'),
+            //                     'price'     =>   Db::raw('price+1'),
+            //                     'status'    =>   Db::raw('status-2')
+            //                 ]);
+
+            // return Db::name('user')->where('id',308)->save(['username' =>  '李黑']);
+           return Db::name('user')->fetchSql(true)->select();
+
+    }
 }
