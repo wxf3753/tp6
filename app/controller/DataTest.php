@@ -150,4 +150,26 @@ class DataTest
            return Db::name('user')->fetchSql(true)->select();
 
     }
+
+
+    public function select_l()
+    {
+        // $user=Db::name('user')->where(
+        //     [
+        //         'gender'    =>    '男',
+        //         'price'     =>    100
+        //     ]
+        // )->select();
+
+
+        // $user=Db::name('user')->field('id,username,password')->select();
+        // $user=Db::name('user')->field('id,username as name')->select();
+        // $user=Db::name('user')->fieldRaw('id,SUM(price)')->select();
+        // return Db::name('user')->fieldRaw('id,SUM(price) as s')->select();
+        // return json($user) ;
+
+    //    return Db::name('user')->alias('a')->select();
+
+            return Db::name('user')->fieldRaw('gender, SUM(price)') ->group('gender')->select();
+    }
 }
